@@ -21,4 +21,23 @@ function playerChoice() {
   }
 
   input = input.toLowerCase();
+
+  let check = validateInput(input);
+
+  while (check == false) {
+    input = prompt(
+      "Type Water, Fire, or Grass. Spelling matters. Case doesn't."
+    );
+    while (input == null) {
+      input = prompt("Type Water, Fire, or Grass");
+    }
+    input = input.toLowerCase();
+    check = validateInput(input);
+  }
+
+  return input;
+}
+
+function validateInput(choice) {
+  return choices.includes(choice);
 }
