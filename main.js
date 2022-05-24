@@ -7,6 +7,8 @@ function game() {
 function playRound() {
   const playerSelection = playerChoice();
   const computerSelection = computerChoice();
+  const winner = checkWinner(playerSelection, computerSelection);
+  console.log(winner);
 }
 
 function computerChoice() {
@@ -41,3 +43,19 @@ function playerChoice() {
 function validateInput(choice) {
   return choices.includes(choice);
 }
+
+function checkWinner(pChoice, cChoice) {
+  if (pChoice === cChoice) {
+    return "Tie";
+  } else if (
+    (pChoice === "water" && cChoice == "grass") ||
+    (pChoice === "fire" && cChoice == "water") ||
+    (pChoice === "grass" && cChoice == "fire")
+  ) {
+    return "Computer";
+  } else {
+    return "Player";
+  }
+}
+
+game();
