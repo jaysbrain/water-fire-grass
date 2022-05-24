@@ -5,15 +5,16 @@ function game() {
   for (let i = 1; i <= 5; i++) {
     playRound(i);
   }
-
+  document.querySelector("button").textContent = "Reset";
   logWins();
 }
 
-function playRound() {
+function playRound(round) {
   const playerSelection = playerChoice();
   const computerSelection = computerChoice();
   const winner = checkWinner(playerSelection, computerSelection);
   winners.push(winner);
+  logRound(playerSelection, computerSelection, winner, round);
 }
 
 function computerChoice() {
@@ -80,4 +81,14 @@ function logWins() {
   }
 }
 
-game();
+function logRound(playerChoice, computerChoice, winner, round) {
+  console.log("Round:", round);
+  console.log("Player Chose:", playerChoice);
+  console.log("Computer Chose:", computerChoice);
+  if (winner === "Player" || winner === "Computer") {
+    console.log(winner, "won the round.");
+  } else {
+    console.log("It's a tie.");
+  }
+  console.log("-------------------------------");
+}
