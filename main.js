@@ -1,16 +1,19 @@
 const choices = ["water", "fire", "grass"];
+let winners = [];
 
 function game() {
   for (let i = 1; i <= 5; i++) {
     playRound(i);
   }
+
+  logWins();
 }
 
 function playRound() {
   const playerSelection = playerChoice();
   const computerSelection = computerChoice();
   const winner = checkWinner(playerSelection, computerSelection);
-  console.log(winner);
+  winners.push(winner);
 }
 
 function computerChoice() {
@@ -57,6 +60,23 @@ function checkWinner(pChoice, cChoice) {
     return "Computer";
   } else {
     return "Player";
+  }
+}
+
+function logWins() {
+  let playerWins = winners.filter((winner) => winner === "Player").length;
+  let computerWins = winners.filter((winner) => winner === "Computer").length;
+  let ties = winners.filter((winner) => winner === "Tie").length;
+  console.log("Results:");
+  console.log("Player Wins:", playerWins);
+  console.log("Computer Wins:", computerWins);
+  console.log("Ties:", ties);
+  if (playerWins > computerWins) {
+    console.log("Player won the game!");
+  } else if (computerWins > playerWins) {
+    console.log("Computer won the game!");
+  } else {
+    console.log("The game ended in a tie.");
   }
 }
 
